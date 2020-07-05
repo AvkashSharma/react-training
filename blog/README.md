@@ -66,3 +66,46 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+
+# REDUX
+ - Action : Actions are payloads of information that send data from your application to your store. They are the only source of information for the store. You send them to the store using store.dispatch()
+ -Actions are plain JavaScript objects. Actions must have a type property that indicates the type of action being performed. Types should typically be defined as string constants
+
+```javascript
+const ADD_TODO = 'ADD_TODO'
+{
+  type: ADD_TODO,
+  text: 'Build my first Redux app'
+}
+```
+
+- Action Creators : Action creators are exactly that—functions that create actions.
+- To initiate a dispatch, pass the result to the dispatch() function like below: 
+
+```javascript
+dispatch(addTodo(text))
+dispatch(completeTodo(index))
+```
+Alternatively, you can create a bound action creator that automatically dispatches:
+
+```javascript
+const boundAddTodo = text => dispatch(addTodo(text))
+const boundCompleteTodo = index => dispatch(completeTodo(index))
+
+// In order to call them 
+boundAddTodo(text)
+boundCompleteTodo(index)
+```
+
+- The dispatch() function can be accessed directly from the store as store.dispatch(), but more likely you'll access it using a helper like react-redux's connect(). You can use bindActionCreators() to automatically bind many action creators to a dispatch() function.
+
+```javascript
+function addTodo(text) {
+  return {
+    type: ADD_TODO,
+    text
+  }
+}
+```
